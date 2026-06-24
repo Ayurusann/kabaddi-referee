@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#181818" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="KABADDI REF" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title>カバディ審判得点板</title>
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./icon.svg" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app" data-app>
+      <header class="topbar">
+        <div class="brand" aria-label="カバディ審判得点板">
+          <span class="brand-mark" aria-hidden="true">K</span>
+          <span>KABADDI REF</span>
+        </div>
+
+        <div class="top-actions">
+          <button type="button" class="utility-button buzzer-button" data-buzzer aria-label="押している間ブザー">ブザー</button>
+          <button type="button" class="utility-button bonus-button" data-bonus aria-label="ボーナスポイント音声">ボーナス</button>
+          <button type="button" class="utility-button raid-out-button" data-raid-out aria-label="レイドアウト音声">RAID OUT</button>
+          <button type="button" class="utility-button" data-reset-scores>得点reset</button>
+          <button type="button" class="utility-button danger" data-reset-match>試合reset</button>
+          <div class="segment" role="group" aria-label="前後半">
+            <button type="button" class="segment-button is-active" data-half="first">前半</button>
+            <button type="button" class="segment-button" data-half="second">後半</button>
+          </div>
+          <button type="button" class="icon-button" data-swap title="左右入替" aria-label="左右入替">⇄</button>
+        </div>
+      </header>
+
+      <main class="match-board">
+        <section class="team-panel team-panel-a" data-team-panel>
+          <input class="team-name" data-team-name aria-label="左側チーム名" maxlength="18" />
+          <div class="player-strip" data-player-strip aria-label="左側IN OUT選手">
+            <button type="button" class="timeout-button" data-timeout-request>
+              <span>TIME OUT</span>
+              <span data-timeout-count>0/2</span>
+            </button>
+            <button type="button" class="all-in-button" data-all-in>ALL IN</button>
+            <div class="player-slot" data-player-slot="0">
+              <span class="player-icon" aria-hidden="true"></span>
+              <input class="player-number" data-player-number="0" inputmode="numeric" pattern="[0-9]*" maxlength="3" autocomplete="off" aria-label="選手1 背番号" />
+              <div class="player-status-actions" aria-label="選手1 状態">
+                <button type="button" class="player-status-button in" data-player-in="0">IN</button>
+                <button type="button" class="player-status-button out" data-player-out="0">OUT</button>
+              </div>
+            </div>
+            <div class="player-slot" data-player-slot="1">
+              <span class="player-icon" aria-hidden="true"></span>
+              <input class="player-number" data-player-number="1" inputmode="numeric" pattern="[0-9]*" maxlength="3" autocomplete="off" aria-label="選手2 背番号" />
+              <div class="player-status-actions" aria-label="選手2 状態">
+                <button type="button" class="player-status-button in" data-player-in="1">IN</button>
+                <button type="button" class="player-status-button out" data-player-out="1">OUT</button>
+              </div>
+            </div>
+            <div class="player-slot" data-player-slot="2">
+              <span class="player-icon" aria-hidden="true"></span>
+              <input class="player-number" data-player-number="2" inputmode="numeric" pattern="[0-9]*" maxlength="3" autocomplete="off" aria-label="選手3 背番号" />
+              <div class="player-status-actions" aria-label="選手3 状態">
+                <button type="button" class="player-status-button in" data-player-in="2">IN</button>
+                <button type="button" class="player-status-button out" data-player-out="2">OUT</button>
+              </div>
+            </div>
+            <div class="player-slot" data-player-slot="3">
+              <span class="player-icon" aria-hidden="true"></span>
+              <input class="player-number" data-player-number="3" inputmode="numeric" pattern="[0-9]*" maxlength="3" autocomplete="off" aria-label="選手4 背番号" />
+              <div class="player-status-actions" aria-label="選手4 状態">
+                <button type="button" class="player-status-button in" data-player-in="3">IN</button>
+                <button type="button" class="player-status-button out" data-player-out="3">OUT</button>
+              </div>
+            </div>
+            <div class="player-slot" data-player-slot="4">
+              <span class="player-icon" aria-hidden="true"></span>
+              <input class="player-number" data-player-number="4" inputmode="numeric" pattern="[0-9]*" maxlength="3" autocomplete="off" aria-label="選手5 背番号" />
+              <div class="player-status-actions" aria-label="選手5 状態">
+                <button type="button" class="player-status-button in" data-player-in="4">IN</button>
+                <button type="button" class="player-status-button out" data-player-out="4">OUT</button>
+              </div>
+            </div>
+            <div class="player-slot" data-player-slot="5">
+              <span class="player-icon" aria-hidden="true"></span>
+              <input class="player-number" data-player-number="5" inputmode="numeric" pattern="[0-9]*" maxlength="3" autocomplete="off" aria-label="選手6 背番号" />
+              <div class="player-status-actions" aria-label="選手6 状態">
+                <button type="button" class="player-status-button in" data-player-in="5">IN</button>
+                <button type="button" class="player-status-button out" data-player-out="5">OUT</button>
+              </div>
+            </div>
+            <div class="player-slot" data-player-slot="6">
+              <span class="player-icon" aria-hidden="true"></span>
+              <input class="player-number" data-player-number="6" inputmode="numeric" pattern="[0-9]*" maxlength="3" autocomplete="off" aria-label="選手7 背番号" />
+              <div class="player-status-actions" aria-label="選手7 状態">
+                <button type="button" class="player-status-button in" data-player-in="6">IN</button>
+                <button type="button" class="player-status-button out" data-player-out="6">OUT</button>
+              </div>
+            </div>
+          </div>
+          <output class="score" data-score aria-label="左側得点">0</output>
+          <div class="raid-control" aria-label="攻撃回数">
+            <div class="raid-lights" data-raid-lights aria-label="RAIDランプ">
+              <span class="raid-light blue" data-raid-light="1"></span>
+              <span class="raid-light blue" data-raid-light="2"></span>
+              <span class="raid-light red" data-raid-light="3"></span>
+            </div>
+            <div class="raid-count-actions">
+              <button type="button" class="raid-count-button primary" data-raid-advance>RAID</button>
+              <button type="button" class="raid-count-button" data-raid-count-reset>reset</button>
+            </div>
+          </div>
+          <div class="score-actions" aria-label="得点操作">
+            <button type="button" class="score-button minus" data-score-delta="-1" aria-label="1点減らす">−</button>
+            <button type="button" class="score-button plus" data-score-delta="1" aria-label="1点加える">＋</button>
+          </div>
+        </section>
+
+        <section class="timer-stack" aria-label="タイマー">
+          <article class="timer-panel main-clock">
+            <div class="timer-head">
+              <span>MAIN</span>
+              <span class="timer-badge" data-main-duration-label>20分</span>
+            </div>
+            <div class="preset-segment" role="group" aria-label="メインタイマー時間">
+              <button type="button" class="preset-button is-active" data-main-preset-ms="1200000">20分</button>
+              <button type="button" class="preset-button" data-main-preset-ms="900000">15分</button>
+            </div>
+            <output class="timer-value" data-main-time aria-label="メインタイマー">20:00</output>
+            <div class="time-adjust-grid" aria-label="メインタイマー手動調整">
+              <button type="button" class="adjust-button" data-timer-adjust="main" data-adjust-ms="-60000">−1分</button>
+              <button type="button" class="adjust-button" data-timer-adjust="main" data-adjust-ms="60000">＋1分</button>
+              <button type="button" class="adjust-button" data-timer-adjust="main" data-adjust-ms="-1000">−1秒</button>
+              <button type="button" class="adjust-button" data-timer-adjust="main" data-adjust-ms="1000">＋1秒</button>
+            </div>
+            <div class="timer-actions">
+              <button type="button" class="timer-button primary" data-main-toggle title="開始" aria-label="メインタイマー開始">▶</button>
+              <button type="button" class="timer-button" data-main-reset title="リセット" aria-label="メインタイマーリセット">↺</button>
+            </div>
+          </article>
+
+          <article class="timer-panel raid-clock">
+            <div class="timer-head">
+              <span>RAID</span>
+              <span class="timer-badge">30秒</span>
+            </div>
+            <output class="timer-value raid-value" data-raid-time aria-label="30秒タイマー">30</output>
+            <div class="time-adjust-grid compact" aria-label="30秒タイマー手動調整">
+              <button type="button" class="adjust-button" data-timer-adjust="raid" data-adjust-ms="-1000">−1秒</button>
+              <button type="button" class="adjust-button" data-timer-adjust="raid" data-adjust-ms="1000">＋1秒</button>
+            </div>
+            <div class="timer-actions">
+              <button type="button" class="timer-button primary" data-raid-toggle title="開始" aria-label="30秒タイマー開始">▶</button>
+              <button type="button" class="timer-button" data-raid-reset title="リセット" aria-label="30秒タイマーリセット">↺</button>
+            </div>
+          </article>
+        </section>
+
+        <section class="team-panel team-panel-b" data-team-panel>
+          <input class="team-name" data-team-name aria-label="右側チーム名" maxlength="18" />
+          <div class="player-strip" data-player-strip aria-label="右側IN OUT選手">
+            <button type="button" class="timeout-button" data-timeout-request>
+              <span>TIME OUT</span>
+              <span data-timeout-count>0/2</span>
+            </button>
+            <button type="button" class="all-in-button" data-all-in>ALL IN</button>
+            <div class="player-slot" data-player-slot="0">
+              <span class="player-icon" aria-hidden="true"></span>
+              <input class="player-number" data-player-number="0" inputmode="numeric" pattern="[0-9]*" maxlength="3" autocomplete="off" aria-label="選手1 背番号" />
+              <div class="player-status-actions" aria-label="選手1 状態">
+                <button type="button" class="player-status-button in" data-player-in="0">IN</button>
+                <button type="button" class="player-status-button out" data-player-out="0">OUT</button>
+              </div>
+            </div>
+            <div class="player-slot" data-player-slot="1">
+              <span class="player-icon" aria-hidden="true"></span>
+              <input class="player-number" data-player-number="1" inputmode="numeric" pattern="[0-9]*" maxlength="3" autocomplete="off" aria-label="選手2 背番号" />
+              <div class="player-status-actions" aria-label="選手2 状態">
+                <button type="button" class="player-status-button in" data-player-in="1">IN</button>
+                <button type="button" class="player-status-button out" data-player-out="1">OUT</button>
+              </div>
+            </div>
+            <div class="player-slot" data-player-slot="2">
+              <span class="player-icon" aria-hidden="true"></span>
+              <input class="player-number" data-player-number="2" inputmode="numeric" pattern="[0-9]*" maxlength="3" autocomplete="off" aria-label="選手3 背番号" />
+              <div class="player-status-actions" aria-label="選手3 状態">
+                <button type="button" class="player-status-button in" data-player-in="2">IN</button>
+                <button type="button" class="player-status-button out" data-player-out="2">OUT</button>
+              </div>
+            </div>
+            <div class="player-slot" data-player-slot="3">
+              <span class="player-icon" aria-hidden="true"></span>
+              <input class="player-number" data-player-number="3" inputmode="numeric" pattern="[0-9]*" maxlength="3" autocomplete="off" aria-label="選手4 背番号" />
+              <div class="player-status-actions" aria-label="選手4 状態">
+                <button type="button" class="player-status-button in" data-player-in="3">IN</button>
+                <button type="button" class="player-status-button out" data-player-out="3">OUT</button>
+              </div>
+            </div>
+            <div class="player-slot" data-player-slot="4">
+              <span class="player-icon" aria-hidden="true"></span>
+              <input class="player-number" data-player-number="4" inputmode="numeric" pattern="[0-9]*" maxlength="3" autocomplete="off" aria-label="選手5 背番号" />
+              <div class="player-status-actions" aria-label="選手5 状態">
+                <button type="button" class="player-status-button in" data-player-in="4">IN</button>
+                <button type="button" class="player-status-button out" data-player-out="4">OUT</button>
+              </div>
+            </div>
+            <div class="player-slot" data-player-slot="5">
+              <span class="player-icon" aria-hidden="true"></span>
+              <input class="player-number" data-player-number="5" inputmode="numeric" pattern="[0-9]*" maxlength="3" autocomplete="off" aria-label="選手6 背番号" />
+              <div class="player-status-actions" aria-label="選手6 状態">
+                <button type="button" class="player-status-button in" data-player-in="5">IN</button>
+                <button type="button" class="player-status-button out" data-player-out="5">OUT</button>
+              </div>
+            </div>
+            <div class="player-slot" data-player-slot="6">
+              <span class="player-icon" aria-hidden="true"></span>
+              <input class="player-number" data-player-number="6" inputmode="numeric" pattern="[0-9]*" maxlength="3" autocomplete="off" aria-label="選手7 背番号" />
+              <div class="player-status-actions" aria-label="選手7 状態">
+                <button type="button" class="player-status-button in" data-player-in="6">IN</button>
+                <button type="button" class="player-status-button out" data-player-out="6">OUT</button>
+              </div>
+            </div>
+          </div>
+          <output class="score" data-score aria-label="右側得点">0</output>
+          <div class="raid-control" aria-label="攻撃回数">
+            <div class="raid-lights" data-raid-lights aria-label="RAIDランプ">
+              <span class="raid-light blue" data-raid-light="1"></span>
+              <span class="raid-light blue" data-raid-light="2"></span>
+              <span class="raid-light red" data-raid-light="3"></span>
+            </div>
+            <div class="raid-count-actions">
+              <button type="button" class="raid-count-button primary" data-raid-advance>RAID</button>
+              <button type="button" class="raid-count-button" data-raid-count-reset>reset</button>
+            </div>
+          </div>
+          <div class="score-actions" aria-label="得点操作">
+            <button type="button" class="score-button minus" data-score-delta="-1" aria-label="1点減らす">−</button>
+            <button type="button" class="score-button plus" data-score-delta="1" aria-label="1点加える">＋</button>
+          </div>
+        </section>
+      </main>
+
+      <div class="timeout-overlay" data-timeout-overlay hidden>
+        <section class="timeout-dialog" data-timeout-dialog aria-live="assertive" aria-label="タイムアウト">
+          <div class="timeout-label">TIME OUT</div>
+          <output class="timeout-countdown" data-timeout-countdown>30</output>
+          <div class="timeout-team" data-timeout-team>チーム</div>
+          <div class="timeout-meta">
+            <span data-timeout-half>前半</span>
+            <span data-timeout-number>1回目 / 2</span>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script src="./app.js" defer></script>
+  </body>
+</html>
